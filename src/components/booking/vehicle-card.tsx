@@ -7,6 +7,8 @@ interface VehicleCardProps {
   id: string;
   name: string;
   description: string;
+  providerName?: string;
+  rating?: number;
   price: number;
   passengers: number;
   luggage: number;
@@ -18,6 +20,8 @@ interface VehicleCardProps {
 export function VehicleCard({
   name,
   description,
+  providerName,
+  rating,
   price,
   passengers,
   luggage,
@@ -58,6 +62,18 @@ export function VehicleCard({
 
         <div className="flex-1 min-w-0">
           <h4 className="font-semibold text-zinc-900 text-lg leading-tight">{name}</h4>
+          {providerName && (
+            <div className="flex items-center gap-2 mt-1.5 mb-1">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-100">
+                by {providerName}
+              </span>
+              {rating && (
+                <span className="text-[11px] font-bold text-zinc-500 flex items-center gap-1">
+                  ⭐ {rating}
+                </span>
+              )}
+            </div>
+          )}
           <p className="text-zinc-500 text-xs mt-1 truncate">{description}</p>
           
           <div className="flex items-center gap-3 mt-3">

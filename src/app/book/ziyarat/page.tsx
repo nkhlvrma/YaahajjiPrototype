@@ -14,28 +14,45 @@ import { cn } from "@/lib/utils";
 
 const TOURS = [
   {
-    id: "makkah-historical",
+    id: "makkah-historical-almosafer",
     title: "Makkah Historical Tour",
     duration: "4 Hours",
     description: "Visit Jabal al-Nour, Jabal Thawr, Arafat, Mina, and Muzdalifah with an expert guide.",
+    providerName: "Almosafer Tours",
+    rating: 4.8,
     priceGroup: 45,
     pricePrivate: 120,
     imageUrl: "https://images.unsplash.com/photo-1591884358897-400d3aa1f52b?auto=format&fit=crop&q=80&w=400&h=250",
   },
   {
-    id: "madinah-ziyarat",
+    id: "makkah-historical-zaman",
+    title: "Makkah Historical Tour",
+    duration: "4 Hours",
+    description: "Comprehensive guided tour of major Islamic historical sites in Makkah.",
+    providerName: "Zaman Travel",
+    rating: 4.6,
+    priceGroup: 40,
+    pricePrivate: 110,
+    imageUrl: "https://images.unsplash.com/photo-1591884358897-400d3aa1f52b?auto=format&fit=crop&q=80&w=400&h=250",
+  },
+  {
+    id: "madinah-ziyarat-almosafer",
     title: "Madinah Core Ziyarat",
     duration: "4 Hours",
     description: "Guided visits to Quba Mosque, Mount Uhud, Qiblatain Mosque, and historical battle sites.",
-    priceGroup: 40,
-    pricePrivate: 110,
+    providerName: "Almosafer Tours",
+    rating: 4.9,
+    priceGroup: 45,
+    pricePrivate: 130,
     imageUrl: "https://images.unsplash.com/photo-1605555416040-af815dacf13b?auto=format&fit=crop&q=80&w=400&h=250",
   },
   {
-    id: "taif-day-trip",
+    id: "taif-day-trip-vip",
     title: "Taif City Day Trip",
     duration: "8 Hours",
     description: "Escape the heat and visit the beautiful Rose Farms, Shubra Palace, and Taif mountains.",
+    providerName: "Makkah VIP",
+    rating: 4.7,
     priceGroup: 95,
     pricePrivate: 250,
     imageUrl: "https://images.unsplash.com/photo-1549488344-c7da419401da?auto=format&fit=crop&q=80&w=400&h=250",
@@ -72,6 +89,7 @@ function ZiyaratBookingForm() {
       subtitle: tourTier === "group" ? `Group Tour (${passengers} people)` : "Private Vehicle Tour",
       price: price,
       details: {
+        "Provider": tour.providerName,
         "City": city,
         "Hotel": hotelName,
         "Date": date ? format(date, "PPP") : "TBD",
@@ -231,7 +249,19 @@ function ZiyaratBookingForm() {
                   {/* Content */}
                   <div className="p-5 flex-1 flex flex-col justify-between">
                     <div>
-                      <h4 className="text-lg font-bold text-zinc-900 mb-1">{tour.title}</h4>
+                      <h4 className="text-lg font-bold text-zinc-900 mb-1 leading-tight">{tour.title}</h4>
+                      {tour.providerName && (
+                        <div className="flex items-center gap-2 mb-3 mt-1.5">
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-100">
+                            by {tour.providerName}
+                          </span>
+                          {tour.rating && (
+                            <span className="text-[11px] font-bold text-zinc-500 flex items-center gap-1">
+                              ⭐ {tour.rating}
+                            </span>
+                          )}
+                        </div>
+                      )}
                       <p className="text-sm font-medium text-zinc-600 mb-1">Stops Covered:</p>
                       <p className="text-sm text-zinc-500 line-clamp-2">{tour.description}</p>
                     </div>
