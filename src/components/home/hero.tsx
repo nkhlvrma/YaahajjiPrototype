@@ -12,6 +12,31 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
+const SLIDES = [
+  {
+    id: "slide-1",
+    image: "/images/hero_kaaba_day_clock_tower.png",
+    overlay: "bg-black/50",
+    title: "Labbaik Allahumma Labbaik",
+    description: "Plan your sacred journey with ease — from airport transfers and luggage support to Ziyarat and transport, all in one trusted place."
+  },
+  {
+    id: "slide-2",
+    image: "/images/hero-makkah.png",
+    overlay: "bg-black/70",
+    title: "Worship First, Logistics Later",
+    description: "We connect you with trusted providers so you can stay present in every moment of your journey."
+  },
+  {
+    id: "slide-3",
+    image: "/images/hero-kaaba-night.png",
+    overlay: "bg-[rgba(0,0,0,0.55)]", // Slightly darker to ensure text pops
+    title: "A Journey of Pure Devotion",
+    description: "Join millions in the sacred rites. With our trusted guidance and comprehensive Umrah packages, your spiritual journey is in expert hands."
+  }
+];
 
 type ServiceTab = {
   id: string;
@@ -60,7 +85,15 @@ export function Hero() {
   const [activeTab, setActiveTab] = useState("luggage");
   const [selectOpenIdx, setSelectOpenIdx] = useState<number | null>(null);
   const [selectValues, setSelectValues] = useState<Record<string, Record<number, string>>>({});
+  const [currentSlide, setCurrentSlide] = useState(0);
   const router = useRouter();
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleSearch = () => {
     if (activeTab === "transfers") router.push("/book/transfers");
@@ -101,32 +134,45 @@ export function Hero() {
   return (
     <section className="relative">
       {/* Full-width background image */}
-      <div className="relative h-[832px] overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/hero_kaaba_day_clock_tower.png')" }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70" />
+      <div className="relative min-h-[100vh] lg:min-h-[832px] overflow-hidden pb-16 lg:pb-0">
+        <AnimatePresence mode="popLayout">
+          <motion.div
+            key={`bg-${currentSlide}`}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url('${SLIDES[currentSlide].image}')` }}
+          />
+        </AnimatePresence>
+        
+        {/* Dynamic Overlay */}
+        <div className={cn("absolute inset-0 transition-colors duration-1000", SLIDES[currentSlide].overlay)} />
+        {/* Persistent bottom gradient for widget readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/70 pointer-events-none" />
 
         {/* Hero Content */}
-        <div className="relative z-10 max-w-[1280px] mx-auto px-8 flex flex-col items-center pt-[200px]">
-          <motion.h1
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-white text-center leading-tight tracking-tight"
-          >
-            Labbaik Allahumma Labbaik
-          </motion.h1>
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-white/90 text-center mt-6 text-base sm:text-[17px] max-w-[672px] leading-relaxed"
-          >
-            Plan your sacred journey with ease — from airport transfers and luggage support to
-            Ziyarat and transport, all in one trusted place.
-          </motion.p>
+        <div className="relative z-10 max-w-[1280px] mx-auto px-4 sm:px-8 flex flex-col items-center pt-[140px] lg:pt-[200px]">
+          <div className="min-h-[160px] flex flex-col items-center justify-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`text-${currentSlide}`}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{ duration: 0.6 }}
+                className="flex flex-col items-center text-center"
+              >
+                <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-white leading-tight tracking-tight">
+                  {SLIDES[currentSlide].title}
+                </h1>
+                <p className="text-white/90 mt-6 text-base sm:text-[17px] max-w-[672px] leading-relaxed">
+                  {SLIDES[currentSlide].description}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
           {/* Search Widget */}
           <motion.div
@@ -174,9 +220,9 @@ export function Hero() {
                   className="flex flex-col lg:flex-row lg:items-stretch"
                 >
                   {currentFields.map((field, idx) => (
-                    <div key={`${activeTab}-${idx}`} className="flex lg:flex-row lg:items-stretch flex-1 min-w-0">
+                    <div key={`${activeTab}-${idx}`} className="flex flex-col lg:flex-row lg:items-stretch flex-1 min-w-0">
                       {idx > 0 && <div className="hidden lg:flex items-center"><div className="w-px h-10 bg-zinc-200" /></div>}
-                      <div className="py-3 px-5 flex-1 min-w-0 rounded-lg hover:bg-zinc-50/80 transition-colors cursor-pointer">
+                      <div className={cn("py-3 px-5 flex-1 min-w-0 rounded-lg hover:bg-zinc-50/80 transition-colors cursor-pointer", idx > 0 && "border-t border-zinc-100 lg:border-t-0")}>
                         <label className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider block mb-1.5">{field.label}</label>
 
                         {field.type === "text" && (
@@ -261,18 +307,35 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-wrap justify-center gap-6 sm:gap-10 mt-8 mb-8"
+            className="flex flex-wrap justify-center gap-6 sm:gap-10 mt-8 mb-6"
           >
-            <span className="flex items-center gap-2 text-white/80 text-sm">
-              <ShieldCheck className="w-5 h-5" /> Trusted providers
+            <span className="flex items-center gap-2 text-white/90 text-sm font-medium">
+              <ShieldCheck className="w-5 h-5 text-amber-500" /> Trusted providers
             </span>
-            <span className="flex items-center gap-2 text-white/80 text-sm">
-              <Eye className="w-5 h-5" /> Transparent pricing
+            <span className="flex items-center gap-2 text-white/90 text-sm font-medium">
+              <Eye className="w-5 h-5 text-amber-500" /> Transparent pricing
             </span>
-            <span className="flex items-center gap-2 text-white/80 text-sm">
-              <Sparkles className="w-5 h-5" /> Zero hassle
+            <span className="flex items-center gap-2 text-white/90 text-sm font-medium">
+              <Sparkles className="w-5 h-5 text-amber-500" /> Zero hassle
             </span>
           </motion.div>
+
+          {/* Carousel Dots */}
+          <div className="flex gap-2 items-center justify-center mt-2 pb-4">
+            {SLIDES.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentSlide(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+                className={cn(
+                  "rounded-full transition-all duration-300",
+                  currentSlide === idx 
+                    ? "w-6 h-2 md:w-8 md:h-2.5 bg-amber-600" 
+                    : "w-2 h-2 md:w-2.5 md:h-2.5 bg-white/40 hover:bg-white/70"
+                )}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
