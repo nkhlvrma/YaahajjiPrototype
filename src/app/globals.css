@@ -5,6 +5,17 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --color-amber-50: #fcf7f1;
+  --color-amber-100: #f7ecd9;
+  --color-amber-200: #f2daa9;
+  --color-amber-300: #e9c168;
+  --color-amber-400: #de9f2f;
+  --color-amber-500: #d08112;
+  --color-amber-600: #a86c2f;
+  --color-amber-700: #8c5427;
+  --color-amber-800: #714124;
+  --color-amber-900: #5d361f;
+  
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
@@ -49,7 +60,7 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
+  --background: #F9F1E8;
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -127,4 +138,15 @@
   html {
     @apply font-sans;
   }
+}
+
+/* Hide scrollbar for horizontal scroll containers */
+.scrollbar-none,
+[data-hide-scrollbar] {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar,
+[data-hide-scrollbar]::-webkit-scrollbar {
+  display: none;
 }
