@@ -3,7 +3,7 @@
 import React, { createContext, useContext, ReactNode, useEffect, useState } from "react";
 import { useLocalStorage } from "@/hooks/use-local-storage";
 
-export type ServiceType = "transfers" | "taxi" | "ziyarat";
+export type ServiceType = "transfers" | "taxi" | "ziyarat" | "luggage";
 
 export interface ItineraryItem {
   id: string; // unique ID for this cart item

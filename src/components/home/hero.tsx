@@ -66,6 +66,7 @@ export function Hero() {
     if (activeTab === "transfers") router.push("/book/transfers");
     else if (activeTab === "taxi") router.push("/book/taxi");
     else if (activeTab === "ziyarat") router.push("/book/ziyarat");
+    else if (activeTab === "luggage") router.push("/book/luggage");
     else alert("Service coming soon!");
   };
 

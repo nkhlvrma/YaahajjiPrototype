@@ -56,8 +56,8 @@ const SERVICE_COLUMNS = [
       {
         icon: Briefcase,
         label: "Luggage Services",
-        desc: "Door-to-door luggage handling and storage",
-        href: "#",
+        desc: "Meet & Greet, Porter, and Luggage Transfer",
+        href: "/book/luggage",
       },
       {
         icon: Accessibility,
