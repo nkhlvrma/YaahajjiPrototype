@@ -22,7 +22,7 @@ const TOURS = [
     rating: 4.8,
     priceGroup: 45,
     pricePrivate: 120,
-    imageUrl: "https://images.unsplash.com/photo-1591884358897-400d3aa1f52b?auto=format&fit=crop&q=80&w=400&h=250",
+    imageUrl: "/images/tours/ziyarat-makkah.png",
   },
   {
     id: "makkah-historical-zaman",
@@ -33,7 +33,7 @@ const TOURS = [
     rating: 4.6,
     priceGroup: 40,
     pricePrivate: 110,
-    imageUrl: "https://images.unsplash.com/photo-1591884358897-400d3aa1f52b?auto=format&fit=crop&q=80&w=400&h=250",
+    imageUrl: "/images/tours/ziyarat-makkah.png",
   },
   {
     id: "madinah-ziyarat-almosafer",
@@ -44,7 +44,7 @@ const TOURS = [
     rating: 4.9,
     priceGroup: 45,
     pricePrivate: 130,
-    imageUrl: "https://images.unsplash.com/photo-1605555416040-af815dacf13b?auto=format&fit=crop&q=80&w=400&h=250",
+    imageUrl: "/images/tours/ziyarat-madinah.png",
   },
   {
     id: "taif-day-trip-vip",
@@ -55,7 +55,7 @@ const TOURS = [
     rating: 4.7,
     priceGroup: 95,
     pricePrivate: 250,
-    imageUrl: "https://images.unsplash.com/photo-1549488344-c7da419401da?auto=format&fit=crop&q=80&w=400&h=250",
+    imageUrl: "/images/tours/ziyarat-taif.png",
   }
 ];
 

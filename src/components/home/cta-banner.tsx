@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export function CTABanner() {
   return (
-    <section className="py-20 overflow-hidden">
+    <section className="py-20 pt-10 overflow-hidden relative z-20">
       <div className="max-w-[896px] mx-auto px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -20,13 +20,13 @@ export function CTABanner() {
           </p>
 
           {/* Email Form */}
-          <div className="flex flex-col sm:flex-row gap-0 max-w-[672px] mx-auto mt-8">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-0 max-w-[580px] mx-auto mt-8">
             <Input
               type="email"
               placeholder="Your email address"
-              className="h-14 rounded-l-xl rounded-r-none sm:rounded-r-none border-zinc-300 bg-white text-base px-6 flex-1 focus-visible:ring-amber-500 sm:rounded-l-xl"
+              className="h-14 rounded-xl sm:rounded-r-none border-zinc-200 bg-white text-base px-6 flex-1 focus-visible:ring-amber-500"
             />
-            <Button className="h-14 rounded-r-xl rounded-l-none sm:rounded-l-none bg-amber-600 hover:bg-amber-700 text-white font-semibold text-base px-8 shadow-md shadow-amber-600/20">
+            <Button className="h-14 rounded-xl sm:rounded-l-none bg-amber-600 hover:bg-amber-700 text-white font-semibold text-base px-10 shadow-lg shadow-amber-600/20 whitespace-nowrap">
               Subscribe
             </Button>
           </div>

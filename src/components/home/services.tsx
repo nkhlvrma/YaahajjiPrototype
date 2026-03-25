@@ -45,7 +45,7 @@ export function Services() {
   ];
 
   return (
-    <section id="services" className="py-24 overflow-hidden bg-[#F9F1E8]">
+    <section id="services" className="py-24 overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-8">
         {/* Header */}
         <motion.div

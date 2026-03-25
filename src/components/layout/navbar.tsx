@@ -74,7 +74,7 @@ const SERVICE_COLUMNS = [
         icon: Map,
         label: "Ziyarat Tours",
         desc: "Guided visits to historic and sacred locations",
-        href: "#",
+        href: "/book/ziyarat",
       },
       {
         icon: Star,

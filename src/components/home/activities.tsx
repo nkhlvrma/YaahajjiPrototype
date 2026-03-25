@@ -9,7 +9,7 @@ export function Activities() {
   return (
     <section className="py-24 overflow-hidden relative">
       {/* Background Image / Texture - Slightly more visible */}
-      <div className="absolute inset-0 opacity-[0.12] pointer-events-none">
+      <div className="absolute inset-0 opacity-[0.3] pointer-events-none">
         <Image 
           src="/images/bg-activities.png" 
           alt="" 
