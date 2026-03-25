@@ -64,8 +64,20 @@ export function Destinations() {
   ];
 
   return (
-    <section id="destinations" className="py-24 overflow-hidden">
-      <div className="max-w-[1280px] mx-auto px-8">
+    <section id="destinations" className="py-24 overflow-hidden relative bg-[#F9F1E8]">
+      {/* Background Pattern - Grounded and subtle */}
+      <div className="absolute inset-0 opacity-40 pointer-events-none flex items-center justify-center translate-y-[-10%] ml-[-20%]">
+        <div className="relative w-[1200px] h-[600px]">
+          <Image 
+            src="/images/bg-destinations-pattern.svg" 
+            alt="" 
+            fill 
+            className="object-contain"
+          />
+        </div>
+      </div>
+
+      <div className="max-w-[1280px] mx-auto px-8 relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

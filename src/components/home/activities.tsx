@@ -7,8 +7,18 @@ import Image from "next/image";
 
 export function Activities() {
   return (
-    <section className="py-24 overflow-hidden">
-      <div className="max-w-[1280px] mx-auto px-8">
+    <section className="py-24 overflow-hidden relative">
+      {/* Background Image / Texture - Slightly more visible */}
+      <div className="absolute inset-0 opacity-[0.12] pointer-events-none">
+        <Image 
+          src="/images/bg-activities.png" 
+          alt="" 
+          fill 
+          className="object-cover"
+        />
+      </div>
+
+      <div className="max-w-[1280px] mx-auto px-8 relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

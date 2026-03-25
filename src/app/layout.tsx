@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Cairo } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
@@ -7,6 +7,7 @@ import { MutawwifAI } from "@/components/home/mutawwif-ai";
 import { BookingProvider } from "@/context/booking-context";
 
 const inter = Inter({ subsets: ["latin"] });
+const cairo = Cairo({ subsets: ["arabic", "latin"], variable: "--font-cairo" });
 
 export const metadata: Metadata = {
   title: "YAA HAJJI | Premium Umrah & Hajj Travel Services",
@@ -20,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} min-h-screen flex flex-col bg-background selection:bg-amber-200 selection:text-amber-900 w-full overflow-x-hidden relative`}>
+      <body className={`${inter.className} ${cairo.variable} min-h-screen flex flex-col bg-background selection:bg-amber-200 selection:text-amber-900 w-full overflow-x-hidden relative`}>
         {/* Global Texture Pattern */}
         <div 
           className="fixed inset-0 pointer-events-none opacity-[0.04] z-0" 

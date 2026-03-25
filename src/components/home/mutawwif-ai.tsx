@@ -185,26 +185,35 @@ export function MutawwifAI() {
       </AnimatePresence>
 
       {/* FAB Button */}
-      <motion.button
-        onClick={() => setOpen(!open)}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className={cn(
-          "fixed bottom-6 right-6 z-[60] flex items-center gap-2.5 rounded-full shadow-xl transition-all duration-300",
-          open
-            ? "w-12 h-12 bg-zinc-800 hover:bg-zinc-700 justify-center"
-            : "h-12 px-5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 shadow-amber-600/30"
-        )}
-      >
-        {open ? (
-          <X className="w-5 h-5 text-white" />
-        ) : (
-          <>
-            <Sparkles className="w-5 h-5 text-white" />
-            <span className="text-white font-semibold text-[13px] hidden sm:inline">Mutawwif AI</span>
-          </>
-        )}
-      </motion.button>
+      <div className="fixed bottom-6 right-6 z-[60]">
+        <div className="absolute inset-[-1.5px] rounded-full bg-gradient-to-r from-amber-200 via-yellow-500 to-[#8B4513]" />
+        <motion.button
+          onClick={() => setOpen(!open)}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className={cn(
+            "relative z-10 flex items-center gap-2.5 rounded-full shadow-2xl transition-all duration-300",
+            open
+              ? "w-12 h-12 bg-zinc-900 justify-center"
+              : "h-12 px-6 bg-[#1a1a1a]"
+          )}
+        >
+          <div className={cn(
+            "absolute inset-0 rounded-full transition-opacity duration-300",
+            !open ? "bg-gradient-to-r from-[#8B4513] to-[#B8860B]" : "opacity-0"
+          )} />
+          <div className="relative z-10 flex items-center gap-2.5">
+            {open ? (
+              <X className="w-5 h-5 text-white" />
+            ) : (
+              <>
+                <Sparkles className="w-5 h-5 text-white" />
+                <span className="text-white font-bold text-[13px] tracking-wide hidden sm:inline uppercase">Mutawwif AI</span>
+              </>
+            )}
+          </div>
+        </motion.button>
+      </div>
     </>
   );
 }
