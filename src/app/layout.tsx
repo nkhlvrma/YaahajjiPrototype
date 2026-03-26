@@ -27,14 +27,14 @@ export default function RootLayout({
         className={`${inter.className} ${cairo.variable} min-h-screen flex flex-col bg-background selection:bg-amber-200 selection:text-amber-900 w-full overflow-x-hidden relative`}
       >
         {/* Global Texture Pattern */}
-        {/* <div
-          className="fixed inset-0 pointer-events-none opacity-[0.2] z-0"
+        <div
+          className="fixed inset-0 pointer-events-none opacity-[0.1] z-0"
           style={{
             backgroundImage: "url('/images/pattern-bg.png')",
-
-            backgroundSize: "420px",
+            backgroundRepeat: "repeat",
+            backgroundSize: "400px",
           }}
-        /> */}
+        />
 
         {/* Global Service Background Pattern */}
         <div
@@ -48,7 +48,7 @@ export default function RootLayout({
 
         {/* Global Top Ornamental Pattern */}
         <div
-          className="absolute top-0 left-0 right-0 h-[123px] pointer-events-none z-0 bg-repeat-x opacity-50"
+          className="absolute top-0 left-0 right-0 h-[123px] pointer-events-none z-0 bg-repeat-x opacity-100"
           style={{ backgroundImage: "url('/images/pattern-layer-top.svg')" }}
         />
 

@@ -457,7 +457,7 @@ export function Hero() {
           </motion.div>
 
           {/* Carousel Dots */}
-          <div className="flex pt-24 gap-2 items-center justify-center mt-2 pb-4">
+          <div className="flex gap-2 items-center justify-center mt-2 pb-4">
             {SLIDES.map((_, idx) => (
               <button
                 key={idx}
