@@ -5,6 +5,17 @@ import { useLocalStorage } from "@/hooks/use-local-storage";
 
 export type ServiceType = "transfers" | "taxi" | "ziyarat" | "luggage";
 
+export interface PassengerDetails {
+  leadName: string;
+  whatsapp: string;
+  email: string;
+  flightNo?: string;
+  visaType?: string;
+  medicalNeeds?: string;
+  languagePref?: string;
+  specialRequests?: string;
+}
+
 export interface ItineraryItem {
   id: string; // unique ID for this cart item
   type: ServiceType;
@@ -13,6 +24,7 @@ export interface ItineraryItem {
   details: Record<string, string>; // e.g. { "Pick-up": "Jeddah Airport", "Passengers": "3" }
   price: number;
   date?: string;
+  passengerDetails?: PassengerDetails;
 }
 
 interface BookingContextShape {

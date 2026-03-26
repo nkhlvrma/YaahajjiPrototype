@@ -68,11 +68,29 @@ export function ItinerarySummary({ isCheckoutPage = false }: ItinerarySummaryPro
                       val && (
                         <div key={key} className="flex flex-col gap-1">
                           <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-widest">{key}</span>
-                          <span className="text-[13px] font-medium text-zinc-800 leading-snug">{val}</span>
+                          <span className="text-[13px] font-medium text-zinc-800 leading-snug truncate">{val}</span>
                         </div>
                       )
                     ))}
                   </div>
+
+                  {item.passengerDetails && (
+                    <div className="mt-4 pt-3 border-t border-zinc-200/50">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-[10px] font-bold text-amber-700 uppercase tracking-widest bg-amber-50 px-2 py-0.5 rounded">Lead Passenger</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-y-2 gap-x-4">
+                        <div className="flex flex-col gap-0.5">
+                          <span className="text-[9px] text-zinc-400 uppercase font-medium">Name</span>
+                          <span className="text-xs font-bold text-zinc-900 truncate">{item.passengerDetails.leadName}</span>
+                        </div>
+                        <div className="flex flex-col gap-0.5">
+                          <span className="text-[9px] text-zinc-400 uppercase font-medium">WhatsApp</span>
+                          <span className="text-xs font-bold text-zinc-900 truncate">{item.passengerDetails.whatsapp}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
 

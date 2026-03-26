@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,6 +14,26 @@ export default function CheckoutPage() {
   const [status, setStatus] = useState<"review" | "payment" | "success">("review");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+  // Pre-fill from the first itinerary item that has passenger details
+  useEffect(() => {
+    const itemWithDetails = itinerary.find(item => item.passengerDetails);
+    
+    if (itemWithDetails && itemWithDetails.passengerDetails) {
+      const { leadName, email: pEmail, whatsapp } = itemWithDetails.passengerDetails;
+      if (leadName && !firstName && !lastName) {
+        const names = leadName.split(" ");
+        if (names.length > 0) {
+          setFirstName(names[0]);
+          setLastName(names.slice(1).join(" "));
+        }
+      }
+      if (pEmail && !email) setEmail(pEmail);
+      if (whatsapp && !phone) setPhone(whatsapp);
+    }
+  }, [itinerary, isHydrated]);
 
   if (!isHydrated) return null;
 
@@ -99,11 +119,11 @@ export default function CheckoutPage() {
                   <div className="grid grid-cols-2 gap-5 mb-5">
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-zinc-700">Email Address</label>
-                      <Input type="email" className="h-12 bg-zinc-50" />
+                      <Input type="email" value={email} onChange={e => setEmail(e.target.value)} className="h-12 bg-zinc-50" />
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-zinc-700">Phone Number</label>
-                      <Input type="tel" className="h-12 bg-zinc-50" />
+                      <Input type="tel" value={phone} onChange={e => setPhone(e.target.value)} className="h-12 bg-zinc-50" />
                     </div>
                   </div>
                 </div>
